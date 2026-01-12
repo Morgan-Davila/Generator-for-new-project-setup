@@ -1,0 +1,370 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #f5f1ee 0%, #e8e3df 100%);
+}
+
+body {
+    font-family: 'OpeningHours', sans-serif;
+    color: #352d2a;
+    line-height: 1.6;
+}
+
+/* Main Container */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+/* Header */
+main > h1 {
+    font-family: 'Frick Regular', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2a2220;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sub-title {
+    font-size: clamp(16px, 2vw, 20px);
+    text-align: center;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    color: #5a524e;
+    padding: 0 20px;
+}
+
+/* Form */
+form {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(53, 45, 42, 0.1);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Section Titles */
+.title-section {
+    font-family: 'Frick Regular', serif;
+    font-size: clamp(24px, 3vw, 32px);
+    text-align: center;
+    color: #352d2a;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.title-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #352d2a;
+}
+
+.title-section:first-child {
+    margin-top: 0;
+}
+
+h3.title-section {
+    font-size: clamp(20px, 2.5vw, 26px);
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+/* Grid Section */
+#grid1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+#grid1 > div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #352d2a;
+    display: block;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="file"],
+textarea {
+    border: 2px solid #d4ccc7;
+    padding: 12px 15px;
+    font-family: 'OpeningHours', sans-serif;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: #fafafa;
+    color: #352d2a;
+    width: 100%;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #352d2a;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(53, 45, 42, 0.1);
+}
+
+input[type="file"] {
+    padding: 10px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+    background: #352d2a;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    margin-right: 15px;
+    transition: background 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #2a2220;
+}
+
+/* Textarea specific */
+#grid1 textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+/* CSS, JS, Folder Containers */
+#CssContainer,
+#JSContainer,
+#folderContainer {
+    margin-top: 50px;
+    padding: 30px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 2px dashed #d4ccc7;
+}
+
+#CssContainer h3,
+#JSContainer h3,
+#folderContainer h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#CssContainer label,
+#JSContainer label,
+#folderContainer label {
+    margin-top: 15px;
+}
+
+#CssContainer input,
+#JSContainer input,
+#folderContainer input {
+    margin-bottom: 15px;
+    margin-top: 8px;
+}
+#divInputCSS,
+#divInputJS,
+#divFolder {
+    min-height: 120px;
+    width: auto;
+    border: #d4ccc7 solid 2px;
+    border-radius: 10px;
+    background-color: #ffffff;    
+    color: #9d7587;
+    font-family: 'Opening Hours', monospace;
+
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    padding: 20px;
+}
+/* Folder Container Specific */
+.folderText {
+    margin: 15px 0;
+    color: #5a524e;
+}
+
+#folderContainer ul {
+    margin: 20px 0 25px 30px;
+    color: #5a524e;
+}
+
+#folderContainer li {
+    margin: 8px 0;
+    padding-left: 10px;
+}
+
+#folderContainer li::marker {
+    color: #352d2a;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    background: linear-gradient(135deg, #352d2a 0%, #2a2220 100%);
+    color: white;
+    border: none;
+    padding: 18px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Gotham Medium', sans-serif;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 60px auto 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(53, 45, 42, 0.4);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 15px rgba(53, 45, 42, 0.3);
+}
+/* File Cells */
+.fileCell {
+    background: #2c2422;
+    height: 40px;
+    color: #ffffff;
+    display: flex;
+    border: none;
+    padding: 10px 25px;
+    
+    
+    
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.crossInFileCell {
+    margin-right: 10px;
+}
+.textInFileCell {
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-family: 'OpeningHours', sans-serif;
+}
+
+
+/* Clear Buttons */
+.clear-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'OpeningHours', sans-serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.clear-btn:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.clear-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        padding: 30px 20px;
+    }
+
+    main {
+        padding: 20px 15px 60px;
+    }
+
+    #grid1 {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    #CssContainer,
+    #JSContainer,
+    #folderContainer {
+        padding: 20px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 16px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 25px 15px;
+    }
+
+    .title-section {
+        margin-top: 40px;
+        margin-bottom: 25px;
+    }
+
+    #folderContainer ul {
+        margin-left: 20px;
+    }
+}
