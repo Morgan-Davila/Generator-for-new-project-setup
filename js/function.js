@@ -9,8 +9,6 @@ function creerUnFileCell(file, currentListe) {
         </svg>
         <p class="textInFileCell">${file}</p>
     `;
-    console.log("creerUnFileCell Etape 1 passé");
-
     //set la croix pour suprimer le button
     button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -22,15 +20,13 @@ function creerUnFileCell(file, currentListe) {
         console.log(currentListe);
 
     });
-    console.log("creerUnFileCell Etape 2 passé");
-
+    if (DEBUG) {
+        console.log(button + " créé");
+    };
 
     return button;
 };
 
-
-
-
-function verifExtension(file) {
-    if (file.slice(-2) === "") {};
+function ajouterExtension (file, extension) { 
+    return file + extension;
 };
