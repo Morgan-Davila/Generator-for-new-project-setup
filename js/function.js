@@ -30,3 +30,19 @@ function creerUnFileCell(file, currentListe) {
 function ajouterExtension (file, extension) { 
     return file + extension;
 };
+
+function verifSiDoublon (file, liste) {
+    if (liste.includes(file)) { 
+        return false;
+    } else {
+        return true;
+    };
+};
+
+function afficherEreurDoublon() {
+    let messageEreur = document.createElement('p');
+    messageEreur.className = DOUBLON.className;
+    messageEreur.textContent = DOUBLON.message;
+
+    return messageEreur;
+};

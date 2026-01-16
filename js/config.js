@@ -24,25 +24,32 @@ const LISTES = {
         'font'
     ]
 };
+const DOUBLON = {
+    message : "Ceci existe déjà dans la liste.",
+    className : "doublonMessage"
+};
 
 const INPUT = {
     css : {
         INPUT : document.getElementById("inputCSS"), //input style
         DIV : document.getElementById('divInputCSS'), //div style
         LISTE : LISTES.css,
-        EXTENSION : ".css"
+        EXTENSION : ".css",
+        DOUBLON_DIV : document.getElementById('doublonCSS')
     },
     js :{
         INPUT : document.getElementById('inputJS'), //input js
         DIV : document.getElementById('divInputJS'), //div js
         LISTE : LISTES.js,
-        EXTENSION : ".js"
+        EXTENSION : ".js",
+        DOUBLON_DIV : document.getElementById('doublonJS')
     },
-    folder :{
+    folder : {
         INPUT : document.getElementById('folderInput'),
         DIV : document.getElementById('divFolder'),
         LISTE : LISTES.folder,
-        EXTENSION : ""
+        EXTENSION : "",
+        DOUBLON_DIV : document.getElementById('doublonFolder')
     }
 };
 
