@@ -242,10 +242,10 @@ textarea {
     padding: 20px;
 }
 /* ==================== */
-/* Doublon */
+/* Design eror */
 /* ==================== */
 
-.doublonMessage {
+.erorMessage {
     color: #e74c3c;
     font-size: 18px;
     margin-top: 5px;

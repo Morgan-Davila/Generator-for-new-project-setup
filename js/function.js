@@ -39,23 +39,46 @@ function verifSiDoublon (file, liste) {
     };
 };
 
-function afficherEreurDoublon(currentInput) {
+function afficherEreurDoublon(file, currentInput) {
     //creation du message d'erreur
     let messageEreur = document.createElement('p');
-    messageEreur.className = DOUBLON.className;
-    messageEreur.textContent = DOUBLON.message;
+    messageEreur.className = EROR_DESIGN.className;
+    messageEreur.textContent = file + MESSAGE_EROR.doublon;
     console.log(messageEreur);
 
     //ajout d'une shadow rouge vif autour de l'inpuit pour alerter l'user
-    currentInput.classList.add("redShadow");
+    currentInput.classList.add(EROR_DESIGN.redShadowClass);
 
     //creation d'une fonction pour suprimer le message d'erreur et l'ombre rouge au bout de 3 secondes
     setTimeout(() => {
         messageEreur.remove();
-        currentInput.classList.remove("redShadow");
+        currentInput.classList.remove(EROR_DESIGN.redShadowClass);
     }, 3000);
 
     
+
+    return messageEreur;
+};
+
+function verifCaractereInterdit(file) { 
+    if (REGEX_INPUT.test(file)) {
+        return true
+    } else {
+        return false
+    }
+};
+
+function afficherEreurRegex (currentInput) {
+    let messageEreur = document.createElement('p');
+    messageEreur.innerText = MESSAGE_EROR.regex;
+    messageEreur.className = EROR_DESIGN.className;
+
+    currentInput.classList.add(EROR_DESIGN.redShadowClass);
+
+    setTimeout(() => {
+        messageEreur.remove();
+        currentInput.classList.remove(EROR_DESIGN.redShadowClass);
+    }, 5000);
 
     return messageEreur;
 };

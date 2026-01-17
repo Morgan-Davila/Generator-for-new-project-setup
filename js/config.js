@@ -24,10 +24,15 @@ const LISTES = {
         'font'
     ]
 };
-const DOUBLON = {
-    message : "Ceci existe déjà dans la liste.",
-    className : "doublonMessage"
+
+const MESSAGE_EROR = {
+    doublon : " existe déjà dans la liste.",
+    regex : "Seul les lettres en majuscules et minuscules ainsi que les chiffres sont autorisés."
 };
+const EROR_DESIGN = {
+    className : 'erorMessage',
+    redShadowClass : 'redShadow' 
+}
 
 const INPUT_CONFIG = {
     css : {
@@ -35,21 +40,24 @@ const INPUT_CONFIG = {
         DIV : document.getElementById('divInputCSS'), //div style
         LISTE : LISTES.css,
         EXTENSION : ".css",
-        DOUBLON_DIV : document.getElementById('doublonCSS')
+        DOUBLON_DIV : document.getElementById('doublonCSS'),
+        REGEX_CONTAINER : document.getElementById('regexCSS')
     },
     js :{
         INPUT : document.getElementById('inputJS'), //input js
         DIV : document.getElementById('divInputJS'), //div js
         LISTE : LISTES.js,
         EXTENSION : ".js",
-        DOUBLON_DIV : document.getElementById('doublonJS')
+        DOUBLON_DIV : document.getElementById('doublonJS'),
+        REGEX_CONTAINER : document.getElementById('regexJS')
     },
     folder : {
         INPUT : document.getElementById('folderInput'),
         DIV : document.getElementById('divFolder'),
         LISTE : LISTES.folder,
         EXTENSION : "",
-        DOUBLON_DIV : document.getElementById('doublonFolder')
+        DOUBLON_DIV : document.getElementById('doublonFolder'),
+        REGEX_CONTAINER : document.getElementById('regexFolder')
     }
 };
 
@@ -73,3 +81,5 @@ const CLEAR_BTN = [
         div : INPUT_CONFIG.folder.DIV
     }
 ];
+
+const REGEX_INPUT = /^[A-Za-z0-9]+$/;
