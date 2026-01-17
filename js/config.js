@@ -29,7 +29,7 @@ const DOUBLON = {
     className : "doublonMessage"
 };
 
-const INPUT = {
+const INPUT_CONFIG = {
     css : {
         INPUT : document.getElementById("inputCSS"), //input style
         DIV : document.getElementById('divInputCSS'), //div style
@@ -58,18 +58,18 @@ const CLEAR_BTN = [
         value: 'CSS',
         button: document.getElementById('clearCSS'),
         liste: LISTES.css,
-        div : INPUT.css.DIV
+        div : INPUT_CONFIG.css.DIV
     },
     {
         value: 'JS',
         button: document.getElementById('clearJS'),
         liste: LISTES.js,
-        div: INPUT.js.DIV
+        div: INPUT_CONFIG.js.DIV
     },
     {
         value : 'folder',
         button : document.getElementById('clearFolder'),
         liste : LISTES.folder,
-        div : INPUT.folder.DIV
+        div : INPUT_CONFIG.folder.DIV
     }
 ];

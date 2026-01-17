@@ -33,16 +33,29 @@ function ajouterExtension (file, extension) {
 
 function verifSiDoublon (file, liste) {
     if (liste.includes(file)) { 
-        return false;
-    } else {
         return true;
+    } else {
+        return false; 
     };
 };
 
-function afficherEreurDoublon() {
+function afficherEreurDoublon(currentInput) {
+    //creation du message d'erreur
     let messageEreur = document.createElement('p');
     messageEreur.className = DOUBLON.className;
     messageEreur.textContent = DOUBLON.message;
+    console.log(messageEreur);
+
+    //ajout d'une shadow rouge vif autour de l'inpuit pour alerter l'user
+    currentInput.classList.add("redShadow");
+
+    //creation d'une fonction pour suprimer le message d'erreur et l'ombre rouge au bout de 3 secondes
+    setTimeout(() => {
+        messageEreur.remove();
+        currentInput.classList.remove("redShadow");
+    }, 3000);
+
+    
 
     return messageEreur;
 };

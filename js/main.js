@@ -9,10 +9,12 @@ BUTTON.addEventListener("click", (event) => {
 });
 
 for (let key in LISTES) {
-    console.log(key);
-    console.log(INPUT[key]);
+    if (DEBUG) {
+        console.log(key);
+        console.log(INPUT_CONFIG[key]);
+    };
     for (let cle in LISTES[key]) { 
-        INPUT[key].DIV.appendChild(creerUnFileCell(LISTES[key][cle], INPUT[key].LISTE));
+        INPUT_CONFIG[key].DIV.appendChild(creerUnFileCell(LISTES[key][cle], INPUT_CONFIG[key].LISTE));
     };
 };
 
@@ -20,15 +22,16 @@ for (let key in LISTES) {
 // Gestion des listes
 // ============================
 
-for (let cle in INPUT) {
+for (let cle in INPUT_CONFIG) {
 
-    INPUT[cle].INPUT.addEventListener("keydown", (event) => {
+    INPUT_CONFIG[cle].INPUT.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();  // Empêche la soumission du form
             
             
-            let file = INPUT[cle].INPUT.value.replace(/\s+/g, ''); //le .replace supprime les espace inutile
-            let currentListe = INPUT[cle].LISTE;
+            let file = INPUT_CONFIG[cle].INPUT.value.replace(/\s+/g, ''); //le .replace supprime les espace inutile
+            let currentListe = INPUT_CONFIG[cle].LISTE;
+            let currentInput = INPUT_CONFIG[cle].INPUT;
 
             if (DEBUG) {
                 console.log(file);
@@ -36,16 +39,22 @@ for (let cle in INPUT) {
             
             if (file !== "") {  // Vérifie que le champ n'est pas vide
                 //on ajoute l'extension au file
-                file = ajouterExtension(file, INPUT[cle].EXTENSION);
+                file = ajouterExtension(file, INPUT_CONFIG[cle].EXTENSION);
 
                 //verif si doublon
                 if (verifSiDoublon(file, currentListe)) {
                     //cacher le message de doublon s'il est affiché
-                    INPUT[cle].DOUBLON_DIV.innerHTML = afficherEreurDoublon();
+                    INPUT_CONFIG[cle].DOUBLON_DIV.appendChild(afficherEreurDoublon(currentInput));
+                    console.log("Doublon détecté : " + file);
+                    currentInput.value = "";
+                } else {
+                    INPUT_CONFIG[cle].LISTE.push(file);
+                
+                    INPUT_CONFIG[cle].DIV.appendChild(creerUnFileCell(file, currentListe));
+                    // Vider l'input
+                    currentInput.value = "";
                 };
 
-                INPUT[cle].LISTE.push(file);
-                
                 if (DEBUG) { 
                    console.log(file + " ajouté.");
                     console.log(LISTES.css);
@@ -54,14 +63,15 @@ for (let cle in INPUT) {
                 };
 
                 
-                INPUT[cle].DIV.appendChild(creerUnFileCell(file, currentListe));
-                // Vider l'input
-                INPUT[cle].INPUT.value = "";
+                
             };
         };
     });
 };
 
+for (let cle in INPUT_CONFIG) {
+    INPUT_CONFIG
+};
 if (DEBUG) {
     console.log(CLEAR_BTN);
 };
