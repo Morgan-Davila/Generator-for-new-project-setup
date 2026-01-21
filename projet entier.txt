@@ -1,0 +1,895 @@
+HTML :
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Générateur de Template HTML</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Morgan Davila">
+    <meta name="description" content="Générateur de template HTML vierge avec structure de projet.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/font.css">
+
+    <!-- JS -->
+    <script src="js/config.js" defer></script>
+    <script src="js/function.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <main>
+        <h1>Setup votre projet en toute simplicité</h1>
+        <p class="sub-title">Entrez les données du head de la page que vous voulez créer puis appuyez sur le bouton. Celui-ci vous donnera un fichier .zip avec tout ce qu'il faut pour votre projet web.</p>
+        
+        <form>                
+            <h2 class="title-section">Les métadonnées</h2>
+
+            <div id="grid1">
+                <div id="titleContainer" class="div1">
+                    <label for="titleInput">Titre :</label>
+                    <textarea id="titleInput" name="titleInput" placeholder="ex : Ma page"></textarea>
+                </div>
+            
+                <div id="charsetContainer" class="div2">
+                    <label for="charsetInput">Le charset :</label>
+                    <textarea id="charsetInput" name="charsetInput" placeholder="ex : utf-8">utf-8</textarea>
+                </div>
+                
+                <div id="descriptionContainer" class="div3">
+                    <label for="inputDescription">La description :</label>
+                    <textarea id="inputDescription" name="inputDescription" placeholder="ex : Une belle page"></textarea>
+                </div>
+                
+                <div id="faviconContainer" class="div4">
+                    <label for="faviconInput">Le favicon :</label>
+                    <input type="file" id="faviconInput" name="faviconInput" accept="image/*">
+                </div>
+            </div>
+
+            <div id="CssContainer">
+                <h3 class="title-section">Le CSS</h3>
+                <label for="inputCSS">Entrez le nom des fichiers que vous voulez créer :</label>
+                <p class="help-text">(.css sera ajouté automatiquement)</p>
+                <input id="inputCSS" type="text" name="inputCSS" placeholder="ex : style">
+                <div class="doublonContainer" id="doublonCSS">
+
+                </div>
+                <div class="regexContainer" id="regexCSS">
+
+                </div>
+                <div class="" id="divInputCSS">
+
+
+
+                </div>
+                <button type="button" id="clearCSS" class="clear-btn">Clear</button>
+            </div>
+
+            <div id="JSContainer">
+                <h3 class="title-section">Le JavaScript</h3>
+                <label for="inputJS">Entrez le nom des fichiers que vous voulez créer :</label>
+                <p class="help-text">(.js sera ajouté automatiquement)</p>
+                <input id="inputJS" type="text" name="inputJS" placeholder="ex : script">
+                <div class="doublonContainer" id="doublonJS">
+                    
+                </div>
+                <div class="regexContainer" id="regexJS">
+
+                </div>
+                <div class="" id="divInputJS">
+
+
+
+                </div>
+                <button type="button" id="clearJS" class="clear-btn">Clear</button>
+            </div>
+
+            <div id="folderContainer">
+                <h3>Les dossiers, pour bien organiser votre projet</h3>
+                <p class="folderText">Les dossiers suivants seront déjà pré-installés :</p>
+                <ul>
+                    <li>Un dossier "style" (dans lequel seront mis les fichiers CSS)</li>
+                    <li>Un dossier "js" (dans lequel seront mis vos fichiers JS)</li>
+                    <li>Un dossier "assets" (pour les photos, vidéos et autres fichiers)</li>
+                    <li>Un dossier "font" avec des polices pré-installées</li>
+                </ul>
+                <label for="folderInput">Entrez les noms des dossiers supplémentaires que vous voulez créer :</label>
+                <input type="text" id="folderInput" name="folderInput" placeholder="ex : images">
+                <div class="doublonContainer" id="doublonFolder">
+                    
+                </div>
+                <div class="regexContainer" id="regexFolder">
+
+                </div>
+                <div id="divFolder">
+                    
+
+
+                </div>
+                <button type="button" id="clearFolder" class="clear-btn">Clear</button>
+            </div>
+
+            <div>
+                <button type="submit" id="submit">Créer la page</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
+
+CSS :
+/* ===================================== */
+/* Global Styles */
+/* ===================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #f5f1ee 0%, #e8e3df 100%);
+}
+
+body {
+    font-family: 'OpeningHours', sans-serif;
+    color: #352d2a;
+    line-height: 1.6;
+}
+
+/* ===================================== */
+/* Main Container */
+/* ===================================== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+/* ===================================== */
+/* Header */
+/* ===================================== */
+main > h1 {
+    font-family: 'Frick Regular', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2a2220;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sub-title {
+    font-size: clamp(16px, 2vw, 20px);
+    text-align: center;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    color: #5a524e;
+    padding: 0 20px;
+}
+
+/* =============================== */
+/* Form */
+/* =============================== */
+form {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(53, 45, 42, 0.1);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* =============================== */
+/* Section Titles */
+/* =============================== */
+.title-section {
+    font-family: 'Frick Regular', serif;
+    font-size: clamp(24px, 3vw, 32px);
+    text-align: center;
+    color: #352d2a;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.title-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #352d2a;
+}
+
+.title-section:first-child {
+    margin-top: 0;
+}
+
+h3.title-section {
+    font-size: clamp(20px, 2.5vw, 26px);
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+/* ========================= */
+/* Grid Section */
+/* ========================= */
+#grid1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+#grid1 > div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================= */
+/* Labels */
+/* ========================= */
+label {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #352d2a;
+    display: block;
+}
+
+/* ========================= */
+/* Input Fields */
+/* ========================= */
+
+input[type="text"],
+input[type="file"],
+textarea {
+    border: 2px solid #d4ccc7;
+    padding: 12px 15px;
+    font-family: 'OpeningHours', sans-serif;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: #fafafa;
+    color: #352d2a;
+    width: 100%;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #352d2a;
+    background: white;
+}
+
+input[type="file"] {
+    padding: 10px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+    background: #352d2a;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    margin-right: 15px;
+    transition: background 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #2a2220;
+}
+
+.help-text {
+    font-size: 24px;
+    color: #666666;
+    margin: 5px 0 10px 0;
+    font-style: italic;
+}
+
+/* ========================= */
+/* Textarea */
+/* ========================= */
+#grid1 textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+/* ========================= */
+/* Containers */
+/* ========================= */
+#CssContainer,
+#JSContainer,
+#folderContainer {
+    margin-top: 50px;
+    padding: 30px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 2px dashed #d4ccc7;
+}
+
+#CssContainer h3,
+#JSContainer h3,
+#folderContainer h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#CssContainer label,
+#JSContainer label,
+#folderContainer label {
+    margin-top: 15px;
+}
+
+#CssContainer input,
+#JSContainer input,
+#folderContainer input {
+    margin-bottom: 15px;
+    margin-top: 8px;
+}
+#divInputCSS,
+#divInputJS,
+#divFolder {
+    min-height: 120px;
+    width: auto;
+    border: #d4ccc7 solid 2px;
+    border-radius: 10px;
+    background-color: #ffffff;    
+    color: #9d7587;
+    font-family: 'OpeningHours', monospace;
+
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    padding: 20px;
+}
+/* ==================== */
+/* Design eror */
+/* ==================== */
+
+.erorMessage {
+    color: #e74c3c;
+    font-size: 18px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+.redShadow {
+    box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
+-webkit-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
+-moz-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
+}
+
+
+
+
+
+/* ==================== */
+/* Folder Container */
+/* ==================== */
+.folderText {
+    margin: 15px 0;
+    color: #5a524e;
+}
+
+#folderContainer ul {
+    margin: 20px 0 25px 30px;
+    color: #5a524e;
+}
+
+#folderContainer li {
+    margin: 8px 0;
+    padding-left: 10px;
+}
+
+#folderContainer li::marker {
+    color: #352d2a;
+}
+
+/* ========================= */
+/* Submit Button */
+/* ========================= */
+button[type="submit"] {
+    background: linear-gradient(135deg, #352d2a 0%, #2a2220 100%);
+    color: white;
+    border: none;
+    padding: 18px 50px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Gotham Medium', sans-serif;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 60px auto 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(53, 45, 42, 0.4);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 15px rgba(53, 45, 42, 0.3);
+}
+/* ==================== */
+/* File Cells */
+/* ==================== */
+.fileCell {
+    background: #2c2422;
+    height: 40px;
+    color: #ffffff;
+    display: flex;
+    border: none;
+    padding: 10px 25px;
+    
+    
+    
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.crossInFileCell {
+    margin-right: 10px;
+}
+.textInFileCell {
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-family: 'OpeningHours', sans-serif;
+}
+
+
+/* ==================== */
+/* Clear Buttons */
+/* ==================== */
+.clear-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'OpeningHours', sans-serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.clear-btn:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.clear-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+}
+
+/* ==================== */
+/* Animations */
+/* ==================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== */
+/* Responsive Design */
+/* ==================== */
+@media (max-width: 768px) {
+    form {
+        padding: 30px 20px;
+    }
+
+    main {
+        padding: 20px 15px 60px;
+    }
+
+    #grid1 {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    #CssContainer,
+    #JSContainer,
+    #folderContainer {
+        padding: 20px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 16px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 25px 15px;
+    }
+
+    .title-section {
+        margin-top: 40px;
+        margin-bottom: 25px;
+    }
+
+    #folderContainer ul {
+        margin-left: 20px;
+    }
+}
+
+FONT :
+/* Font Definitions */
+
+@font-face {
+    font-family: 'Bodoni classic';
+    src: url('../font/Bodoni_Moda/BodoniModa-VariableFont_opsz\,wght.ttf');
+}
+
+.Bodoni-Classic {
+    font-family: 'Bodoni classic';
+}
+
+@font-face {
+    font-family: 'Gotham Black';
+    src: url('../font/Gotham Fonts Family/GOTHAM-BOLD.TTF');
+}
+
+.Gotham-Black {
+    font-family: 'Gotham Black';
+}
+
+@font-face {
+    font-family: 'Gotham Medium';
+    src: url('../font/Gotham Fonts Family/Gotham-Medium.otf');
+}
+
+.Gotham-Medium {
+    font-family: 'Gotham Medium';
+}
+
+@font-face {
+    font-family: 'Frick Regular';
+    src: url(../font/Frick/Frick0.3-Regular.otf);
+}
+
+.Frick-Regular {
+    font-family: 'Frick Regular';
+}
+
+@font-face {
+    font-family: 'OpeningHours';
+    src: url('../font/OpeningHours/OpeningHoursSans-Regular.otf');
+}
+
+.OpeningHours {
+    font-family: 'OpeningHours';
+}
+
+@font-face {
+    font-family: 'Stardom Regular';
+    src: url(../font/Stardom/Stardom-Regular.otf);
+}
+
+.Stardom-Regular {
+    font-family: 'Stardom Regular';
+}
+
+JS :
+config :
+const META_INPUT = {
+    title: document.getElementById("titleInput"),
+
+    charset: document.getElementById("charsetInput"),
+
+    description: document.getElementById("inputDescription"),
+
+    favicon: document.getElementById("faviconInput")
+};   
+
+
+const LISTES = {
+    css : [
+        'style.css',
+        'font.css'
+    ],
+    js : [
+        'script.js'
+    ],
+    folder :[
+        'style',
+        'js',
+        'assets',
+        'font'
+    ]
+};
+
+const MESSAGE_EROR = {
+    doublon : " existe déjà dans la liste.",
+    regex : "Seul les lettres en majuscules et minuscules ainsi que les chiffres sont autorisés."
+};
+const EROR_DESIGN = {
+    className : 'erorMessage',
+    redShadowClass : 'redShadow' 
+}
+
+const INPUT_CONFIG = {
+    css : {
+        INPUT : document.getElementById("inputCSS"), //input style
+        DIV : document.getElementById('divInputCSS'), //div style
+        LISTE : LISTES.css,
+        EXTENSION : ".css",
+        DOUBLON_DIV : document.getElementById('doublonCSS'),
+        REGEX_CONTAINER : document.getElementById('regexCSS')
+    },
+    js :{
+        INPUT : document.getElementById('inputJS'), //input js
+        DIV : document.getElementById('divInputJS'), //div js
+        LISTE : LISTES.js,
+        EXTENSION : ".js",
+        DOUBLON_DIV : document.getElementById('doublonJS'),
+        REGEX_CONTAINER : document.getElementById('regexJS')
+    },
+    folder : {
+        INPUT : document.getElementById('folderInput'),
+        DIV : document.getElementById('divFolder'),
+        LISTE : LISTES.folder,
+        EXTENSION : "",
+        DOUBLON_DIV : document.getElementById('doublonFolder'),
+        REGEX_CONTAINER : document.getElementById('regexFolder')
+    }
+};
+
+const CLEAR_BTN = [
+    {
+        value: 'CSS',
+        button: document.getElementById('clearCSS'),
+        liste: LISTES.css,
+        div : INPUT_CONFIG.css.DIV
+    },
+    {
+        value: 'JS',
+        button: document.getElementById('clearJS'),
+        liste: LISTES.js,
+        div: INPUT_CONFIG.js.DIV
+    },
+    {
+        value : 'folder',
+        button : document.getElementById('clearFolder'),
+        liste : LISTES.folder,
+        div : INPUT_CONFIG.folder.DIV
+    }
+];
+
+const REGEX_INPUT = /^[A-Za-z0-9]+$/;
+
+Function :
+function creerUnFileCell(file, currentListe) {
+    let button = document.createElement('button');
+    button.className = 'fileCell';  // Propriété, pas fonction
+    button.type = 'button';  // Important pour éviter la soumission du form
+
+    let p = document.createElement('p');
+    p.textContent = file;
+    
+    let svg = `
+        <svg class="crossInFileCell" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    `
+    button.innerHTML = svg;
+    button.appendChild(p);
+
+    //set la croix pour suprimer le button
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        button.remove(); //suprimme le button du DOM
+        const i = currentListe.indexOf(file); //suprime le fichier de sa liste
+        i !== -1 && currentListe.splice(i, 1);
+
+        if (DEBUG) {
+            console.log(currentListe);
+        }
+    });
+    if (DEBUG) {
+        console.log(button + " créé");
+    };
+
+    return button;
+};
+
+function ajouterExtension (file, extension) { 
+    return file + extension;
+};
+
+function verifSiDoublon (file, liste) {
+    if (liste.includes(file)) { 
+        return true;
+    } else {
+        return false; 
+    };
+};
+
+function afficherEreurDoublon(file, currentInput) {
+    //creation du message d'erreur
+    let messageEreur = document.createElement('p');
+    messageEreur.className = EROR_DESIGN.className;
+    messageEreur.textContent = file + MESSAGE_EROR.doublon;
+
+    if (DEBUG) {
+        console.log(messageEreur);
+    };
+
+    //ajout d'une shadow rouge vif autour de l'inpuit pour alerter l'user
+    currentInput.classList.add(EROR_DESIGN.redShadowClass);
+
+    //creation d'une fonction pour suprimer le message d'erreur et l'ombre rouge au bout de 3 secondes
+    setTimeout(() => {
+        messageEreur.remove();
+        currentInput.classList.remove(EROR_DESIGN.redShadowClass);
+    }, 3000);
+
+    
+
+    return messageEreur;
+};
+
+function verifCaractereInterdit(file) { 
+    if (REGEX_INPUT.test(file)) {
+        return true
+    } else {
+        return false
+    }
+};
+
+function afficherEreurRegex (currentInput) {
+    let messageEreur = document.createElement('p');
+    messageEreur.innerText = MESSAGE_EROR.regex;
+    messageEreur.className = EROR_DESIGN.className;
+
+    currentInput.classList.add(EROR_DESIGN.redShadowClass);
+
+    setTimeout(() => {
+        messageEreur.remove();
+        currentInput.classList.remove(EROR_DESIGN.redShadowClass);
+    }, 5000);
+
+    return messageEreur;
+};
+
+main :
+const DEBUG = true;
+
+
+const BUTTON = document.getElementById("submit");
+
+BUTTON.addEventListener("click", (event) => {
+    event.preventDefault();
+    
+});
+
+for (let key in LISTES) {
+    if (DEBUG) {
+        console.log(key);
+        console.log(INPUT_CONFIG[key]);
+    };
+    for (let cle in LISTES[key]) { 
+        INPUT_CONFIG[key].DIV.appendChild(creerUnFileCell(LISTES[key][cle], INPUT_CONFIG[key].LISTE));
+    };
+};
+
+// ============================
+// Gestion des listes
+// ============================
+
+for (let cle in INPUT_CONFIG) {
+
+    INPUT_CONFIG[cle].INPUT.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();  // Empêche la soumission du form
+            
+            
+            let file = INPUT_CONFIG[cle].INPUT.value.replace(/\s+/g, ''); //le .replace supprime les espace inutile
+            let currentListe = INPUT_CONFIG[cle].LISTE;
+            let currentInput = INPUT_CONFIG[cle].INPUT;
+            let currentDiv = INPUT_CONFIG[cle].DIV;
+            let currentRegex = INPUT_CONFIG[cle].REGEX_CONTAINER;
+
+            if (DEBUG) {
+                console.log(file);
+            };
+            
+            if (file !== "") {  // Vérifie que le champ n'est pas vide
+
+                //on verifi qu'il n'y a pas de caractère interdit (histoire d'eviter les <script></script>)
+                if (!verifCaractereInterdit(file)) {
+                    currentRegex.appendChild(afficherEreurRegex(currentInput));
+                } else {
+
+                    //on ajoute l'extension au file
+                    file = ajouterExtension(file, INPUT_CONFIG[cle].EXTENSION);
+
+                    //verif si doublon
+                    if (verifSiDoublon(file, currentListe)) {
+                        //cacher le message de doublon s'il est affiché
+                        INPUT_CONFIG[cle].DOUBLON_DIV.appendChild(afficherEreurDoublon(file, currentInput));
+                        console.log("Doublon détecté : " + file);
+                        currentInput.value = "";
+                    } else {
+                        currentListe.push(file);
+                    
+                        currentDiv.appendChild(creerUnFileCell(file, currentListe));
+                        // Vider l'input
+                        currentInput.value = "";
+                    };
+                };
+
+                if (DEBUG) { 
+                    console.log(file + " ajouté.");
+                    console.log(LISTES.css);
+                    console.log(LISTES.js);
+                    console.log(LISTES.folder);
+                };
+
+                
+                
+            };
+        };
+    });
+};
+
+for (let cle in INPUT_CONFIG) {
+    INPUT_CONFIG
+};
+if (DEBUG) {
+    console.log(CLEAR_BTN);
+};
+
+
+// ============================
+// Clear buttons
+// ============================
+for (let cle in CLEAR_BTN) {
+    CLEAR_BTN[cle].button.addEventListener("click", () => {
+        CLEAR_BTN[cle].liste.length = 0;
+        if (DEBUG) {
+            console.log(CLEAR_BTN[cle].liste);
+        }
+
+        if (CLEAR_BTN[cle].div) {
+            CLEAR_BTN[cle].div.innerHTML = ""; //tout vider
+        };
+    });
+};

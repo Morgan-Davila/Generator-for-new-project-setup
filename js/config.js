@@ -5,6 +5,10 @@ const META_INPUT = {
 
     description: document.getElementById("inputDescription"),
 
+    author : document.getElementById('inputAuthor'),
+
+    lang : document.getElementById('inputLang'),
+
     favicon: document.getElementById("faviconInput")
 };   
 
@@ -16,14 +20,20 @@ const LISTES = {
     ],
     js : [
         'script.js'
-    ],
-    folder :[
-        'style',
-        'js',
-        'assets',
-        'font'
     ]
+    /* folder :[
+         'style',
+         'js',
+         'assets',
+         'font'
+    ]*/
 };
+const LISTE_DOC = [
+    'style',
+    'js',
+    'assets',
+    'font'
+];
 
 const MESSAGE_EROR = {
     doublon : " existe déjà dans la liste.",
@@ -51,14 +61,14 @@ const INPUT_CONFIG = {
         DOUBLON_DIV : document.getElementById('doublonJS'),
         REGEX_CONTAINER : document.getElementById('regexJS')
     },
-    folder : {
+    /*folder : {
         INPUT : document.getElementById('folderInput'),
         DIV : document.getElementById('divFolder'),
         LISTE : LISTES.folder,
         EXTENSION : "",
         DOUBLON_DIV : document.getElementById('doublonFolder'),
         REGEX_CONTAINER : document.getElementById('regexFolder')
-    }
+    }*/
 };
 
 const CLEAR_BTN = [
@@ -74,12 +84,37 @@ const CLEAR_BTN = [
         liste: LISTES.js,
         div: INPUT_CONFIG.js.DIV
     },
-    {
+    /*{
         value : 'folder',
         button : document.getElementById('clearFolder'),
         liste : LISTES.folder,
         div : INPUT_CONFIG.folder.DIV
-    }
+    }*/
 ];
 
-const REGEX_INPUT = /^[A-Za-z0-9]+$/;
+const REGEX_INPUT = /^[A-Za-z0-9_-]+$/;
+
+const BUTTON = document.getElementById("submit");
+
+const REACTIF = {
+    titre : {
+        src : META_INPUT.title,
+        line : document.createElement('title')
+    },
+    charset : {
+        src : META_INPUT.charset,
+        line : document.createElement('meta')
+    },
+    description : {
+        src : META_INPUT.description,
+        line : document.createElement('meta')
+    },
+    author : {
+        src : META_INPUT.author,
+        line : document.createElement('meta')
+    },
+    favicon : {
+        src : META_INPUT.favicon,
+        line : document.createElement('link')
+    }
+}

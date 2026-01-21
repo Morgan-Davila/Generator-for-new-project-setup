@@ -2,13 +2,18 @@ function creerUnFileCell(file, currentListe) {
     let button = document.createElement('button');
     button.className = 'fileCell';  // Propriété, pas fonction
     button.type = 'button';  // Important pour éviter la soumission du form
+
+    let p = document.createElement('p');
+    p.textContent = file;
     
-    button.innerHTML = `
+    let svg = `
         <svg class="crossInFileCell" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <p class="textInFileCell">${file}</p>
-    `;
+    `
+    button.innerHTML = svg;
+    button.appendChild(p);
+
     //set la croix pour suprimer le button
     button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -17,8 +22,9 @@ function creerUnFileCell(file, currentListe) {
         const i = currentListe.indexOf(file); //suprime le fichier de sa liste
         i !== -1 && currentListe.splice(i, 1);
 
-        console.log(currentListe);
-
+        if (DEBUG) {
+            console.log(currentListe);
+        }
     });
     if (DEBUG) {
         console.log(button + " créé");
@@ -44,7 +50,10 @@ function afficherEreurDoublon(file, currentInput) {
     let messageEreur = document.createElement('p');
     messageEreur.className = EROR_DESIGN.className;
     messageEreur.textContent = file + MESSAGE_EROR.doublon;
-    console.log(messageEreur);
+
+    if (DEBUG) {
+        console.log(messageEreur);
+    };
 
     //ajout d'une shadow rouge vif autour de l'inpuit pour alerter l'user
     currentInput.classList.add(EROR_DESIGN.redShadowClass);
