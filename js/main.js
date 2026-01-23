@@ -124,7 +124,7 @@ for (let cle in REACTIF) {
 BUTTON.addEventListener("click", (event) => {
     event.preventDefault();
     
-    const HTML = document.createElement('html');
+    /*const HTML = document.createElement('html');
     HTML.lang = META_INPUT.lang.value;
 
     const HEAD = document.createElement('head');
@@ -156,7 +156,7 @@ BUTTON.addEventListener("click", (event) => {
     FAVICON.setAttribute('rel', 'icon');
     FAVICON.setAttribute('href', META_INPUT.favicon.value);
     HEAD.appendChild(FAVICON);
-
+    */
     if (DEBUG) {
         console.log(HTML);
         console.log(HEAD);
@@ -166,29 +166,17 @@ BUTTON.addEventListener("click", (event) => {
         console.log(AUTHOR);
         console.log(FAVICON);
     };
-
-    let HTMLcontent = `
-        <html lang="${META_INPUT.lang.value}">
-            <head>
-                <title>${META_INPUT.title.value}</title>
-                <meta charset="${META_INPUT.charset.value}">
-                <meta name="description" content="${META_INPUT.description.value}">
-                <meta name="author" content="${META_INPUT.author.value}">
-
-                <link rel="icon" href="${META_INPUT.favicon.value}">
-
-                <!-- CSS -->
-                
-    `
+    let CSSplace = ""; //l'endroit où seront ajouté 
+    let JSplace = "";
 
     // --------------------
     // CSS & JS
     // --------------------
+    /*
     for (let cle in LISTES) {
-
         switch (cle) {
             case 'css' :
-                for (let file of LISTES['css']) {
+                for (let file of LISTES[cle]) {
                     let link = document.createElement('link');
                     link.setAttribute('rel', 'stylesheet');
                     link.setAttribute('type', 'text/css');
@@ -202,7 +190,7 @@ BUTTON.addEventListener("click", (event) => {
                 };
             break
             case 'js' :
-                for (let file of LISTES['js']) {
+                for (let file of LISTES[cle]) {
                     let script = document.createElement('script');
                     script.setAttribute('src', 'js/' + file);
 
@@ -215,9 +203,58 @@ BUTTON.addEventListener("click", (event) => {
             break
         }
     };
+    */
+    for (let cle in LISTES) {
+        switch (cle) {
+            case 'css' : 
+                for (let file of LISTES[cle]) {
+                    let CSSline = `<link rel="stylesheet" type="text/css" href="style/${file}">\n`
+                    CSSplace += CSSline;
+                    // console.log(CSSplace);
+                    // console.log(CSSline)
+                }
+            break
+            case 'js' :
+                for (let file of LISTES[cle]) {
+                    let JSline = `<script src="js/${file}" defer></script>\n`
+                    JSplace += JSline;
+                    // console.log(JSplace);
+                    // console.log(JSline)
+                }
+            break
+        }
+    };
     
-    console.log(HTML);
-    console.log(HEAD);
+    // console.log(HTML);
+    // console.log(HEAD);
+
+    console.log(CSSplace);
+    console.log(JSplace);
+
+    let HTMLcontent = `
+        <!DOCTYPE html>
+        <html lang="${META_INPUT.lang.value}">
+            <head>
+                <title>${META_INPUT.title.value}</title>
+                <meta charset="${META_INPUT.charset.value}">
+                <meta name="description" content="${META_INPUT.description.value}">
+                <meta name="author" content="${META_INPUT.author.value}">
+
+                <link rel="icon" href="${META_INPUT.favicon.value}">
+
+                <!-- CSS -->
+                ${CSSplace}
+
+                <!-- JS -->
+                ${JSplace}
+
+            </head
+            <body>
+
+
+            </body>
+        </html>      
+    `;
 
     // --------------------
     // Création du zip
@@ -230,13 +267,29 @@ BUTTON.addEventListener("click", (event) => {
     let folderAssets = zip.folder(LISTE_DOC[2]);
     let folderFont = zip.folder(LISTE_DOC[3]);
 
-    let HTMLfile = zip.file('index.html', HTML)
+    let HTMLfile = zip.file('index.html', HTMLcontent)
+    console.log(HTMLcontent)
 
-    for (let cle of LISTES.css) {
-        folderStyle.file(LISTES[cle]);
-    }
-    for (let cle of LISTES.js) {
-        folderJs.file(LISTES[cle])
+    
+    // Ajouter les fichiers CSS dans folderStyle
+    for (let fileName of LISTES.css) {
+        // Ici fileName est le nom du fichier CSS
+        folderStyle.file(fileName, LISTES.css[fileName]); // si tu as le contenu dans LISTES.css[fileName]
     }
 
+    // Ajouter les fichiers JS dans folderJs
+    for (let fileName of LISTES.js) {
+        folderJs.file(fileName, LISTES.js[fileName]); // pareil
+    }
+
+
+    zip.generateAsync({type: 'blob'}).then(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+
+        a.href = url;
+        a.download = META_INPUT.title.value + '.zip'
+        a.click();
+        URL.revokeObjectURL(url);
+    })
 });
