@@ -91,3 +91,22 @@ function afficherEreurRegex (currentInput) {
 
     return messageEreur;
 };
+
+function creerUnFontCell (fontClass, fontName) {
+    let fontCellContent = `
+        <label class="container">
+            <input checked="checked" type="checkbox">
+            <div class="checkmark"></div>
+        </label>
+        <div class="fontPlace ${fontClass}">
+            <span class="nameFont">${fontName}</span>
+            <span> | </span>
+            <span>Portez ce vieux whisky au juge blond qui fume. 1234567890</span>
+        </div>
+    `;
+    let fontCell = document.createElement('div');
+    fontCell.classList.add('fontCell');
+    fontCell.innerHTML = fontCellContent;
+
+    return fontCell;
+}

@@ -70,9 +70,6 @@ for (let cle in INPUT_CONFIG) {
     });
 };
 
-for (let cle in INPUT_CONFIG) {
-    INPUT_CONFIG
-};
 if (DEBUG) {
     console.log(CLEAR_BTN);
 };
@@ -94,139 +91,46 @@ for (let cle in CLEAR_BTN) {
     });
 };
 
-/* REACTIF.forEach(element => {
-     element.addEventListener("input", (event) => {
-         console.log("Valeur : " + event.target.value);
-         console.log(event);
+// ============================
+// Gestion des font Cell
+// ============================
 
-        
-     });
-});
-
-for (let cle in REACTIF) {
-    console.log(REACTIF[cle].src);
-
-    let currentElement = REACTIF[cle].src;
-    let currentLine = REACTIF[cle].line
-
-    currentElement.addEventListener("change", (event) => {
-        console.log(event)
-    });
-} */
+//Création
+for (let cle in LISTE_FONT) {
+    const fontCellContainer = document.getElementById('fontCellContainer');
+    fontCellContainer.appendChild(creerUnFontCell(LISTE_FONT[cle].class, LISTE_FONT[cle].name))
+}
 
 
-
-
-
-
-
-//création du Zip Final
+// ============================
+// Création du zip final
+// ============================
 BUTTON.addEventListener("click", (event) => {
     event.preventDefault();
     
-    /*const HTML = document.createElement('html');
-    HTML.lang = META_INPUT.lang.value;
-
-    const HEAD = document.createElement('head');
-    HTML.appendChild(HEAD);
-
-    // --------------------
-    // META DATA
-    // --------------------
-
-    const TITLE = document.createElement('title');
-    TITLE.textContent = META_INPUT.title.value
-    HEAD.appendChild(TITLE);
-
-    const CHARSET = document.createElement('meta');
-    CHARSET.setAttribute('charset', META_INPUT.charset.value);
-    HEAD.appendChild(CHARSET);
-
-    const DESCRIPTION = document.createElement('meta');
-    DESCRIPTION.setAttribute('name', 'description');
-    DESCRIPTION.setAttribute('content', META_INPUT.description.value);
-    HEAD.appendChild(DESCRIPTION);
-
-    const AUTHOR = document.createElement('meta');
-    AUTHOR.setAttribute('name', 'author');
-    AUTHOR.setAttribute('content', META_INPUT.author.value)
-    HEAD.appendChild(AUTHOR);
-    
-    const FAVICON = document.createElement('link');
-    FAVICON.setAttribute('rel', 'icon');
-    FAVICON.setAttribute('href', META_INPUT.favicon.value);
-    HEAD.appendChild(FAVICON);
-    */
-    if (DEBUG) {
-        console.log(HTML);
-        console.log(HEAD);
-        console.log(TITLE);
-        console.log(CHARSET);
-        console.log(DESCRIPTION);
-        console.log(AUTHOR);
-        console.log(FAVICON);
-    };
-    let CSSplace = ""; //l'endroit où seront ajouté 
-    let JSplace = "";
+    let CSSplace = ""; //l'endroit où seront ajouté le txt des link
+    let JSplace = ""; //pareil avec avec script
 
     // --------------------
     // CSS & JS
     // --------------------
-    /*
-    for (let cle in LISTES) {
-        switch (cle) {
-            case 'css' :
-                for (let file of LISTES[cle]) {
-                    let link = document.createElement('link');
-                    link.setAttribute('rel', 'stylesheet');
-                    link.setAttribute('type', 'text/css');
-                    link.setAttribute('href', 'style/' + file);
 
-                    HEAD.appendChild(link);
-
-                    if (DEBUG) {
-                        console.log(link);
-                    };
-                };
-            break
-            case 'js' :
-                for (let file of LISTES[cle]) {
-                    let script = document.createElement('script');
-                    script.setAttribute('src', 'js/' + file);
-
-                    HEAD.appendChild(script);
-
-                    if (DEBUG) {
-                        console.log(script);
-                    }
-                }
-            break
-        }
-    };
-    */
     for (let cle in LISTES) {
         switch (cle) {
             case 'css' : 
                 for (let file of LISTES[cle]) {
                     let CSSline = `<link rel="stylesheet" type="text/css" href="style/${file}">\n`
                     CSSplace += CSSline;
-                    // console.log(CSSplace);
-                    // console.log(CSSline)
                 }
             break
             case 'js' :
                 for (let file of LISTES[cle]) {
                     let JSline = `<script src="js/${file}" defer></script>\n`
                     JSplace += JSline;
-                    // console.log(JSplace);
-                    // console.log(JSline)
                 }
             break
         }
     };
-    
-    // console.log(HTML);
-    // console.log(HEAD);
 
     console.log(CSSplace);
     console.log(JSplace);

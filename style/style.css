@@ -123,6 +123,7 @@ label {
     margin-bottom: 10px;
     color: #352d2a;
     display: block;
+    margin-top: 15px;
 }
 
 /* ========================= */
@@ -156,7 +157,7 @@ input[type="file"] {
 }
 
 input[type="file"]::file-selector-button {
-    background: #352d2a;
+    background: #136ecf;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -209,12 +210,6 @@ textarea {
     margin-bottom: 20px;
 }
 
-
-.big-container label {
-    margin-top: 15px;
-}
-
-
 .big-container input {
     margin-bottom: 15px;
     margin-top: 8px;
@@ -246,8 +241,8 @@ textarea {
 }
 .redShadow {
     box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
--webkit-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
--moz-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
+    -webkit-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
+    -moz-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
 }
 
 
@@ -276,11 +271,111 @@ textarea {
     color: #352d2a;
 }
 
+/* ==================== */
+/* Font Cell */
+/* ==================== */
+#fontCellContainer {
+    min-height: 120px;
+    width: auto;
+    border: #d4ccc7 solid 2px;
+    border-radius: 10px;
+    background-color: #ffffff;    
+    color: #9d7587;
+    font-family: 'OpeningHours', monospace;
+
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    padding: 20px;
+    margin-top: 20px;
+}
+#fontCellContainer input[type="checkbox"] {
+    height: 100px;
+}
+.fontCell {
+    min-height: 90px;
+    min-width: 90%;
+    border: #d4ccc7 solid 2px;
+    border-radius: 10px;
+    background-color: #fafafa;    
+    color: #202020;
+    font-family: 'OpeningHours', monospace;
+
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+    margin: auto;
+}
+.fontPlace {
+    color: #202020;
+    margin: auto;
+    font-size: 20px;
+}
+/* ---------- */
+/* Checkmarks */
+/* ---------- */
+.container {
+    --input-focus: #136ecf;
+    --input-out-of-focus: #ccc;
+    --bg-color: #fff;
+    --bg-color-alt: #666;
+    --main-color: #323232;
+
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--input-out-of-focus);
+    transition: all 0.3s;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: var(--input-focus);
+}
+
+.checkmark:after {
+    content: "";
+    width: 7px;
+    height: 15px;
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    display: none;
+    border: solid var(--bg-color);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
 /* ========================= */
 /* Submit Button */
 /* ========================= */
 button[type="submit"] {
-    background: linear-gradient(135deg, #352d2a 0%, #2a2220 100%);
+    background-color: #136ecf;
     color: white;
     border: none;
     padding: 18px 50px;
@@ -310,7 +405,7 @@ button[type="submit"]:active {
 /* File Cells */
 /* ==================== */
 .fileCell {
-    background: #2c2422;
+    background: #136ecf;
     height: 40px;
     color: #ffffff;
     display: flex;

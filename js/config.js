@@ -21,12 +21,6 @@ const LISTES = {
     js : [
         'script.js'
     ]
-    /* folder :[
-         'style',
-         'js',
-         'assets',
-         'font'
-    ]*/
 };
 const LISTE_DOC = [
     'style',
@@ -34,6 +28,7 @@ const LISTE_DOC = [
     'assets',
     'font'
 ];
+
 
 const MESSAGE_EROR = {
     doublon : " existe déjà dans la liste.",
@@ -60,15 +55,7 @@ const INPUT_CONFIG = {
         EXTENSION : ".js",
         DOUBLON_DIV : document.getElementById('doublonJS'),
         REGEX_CONTAINER : document.getElementById('regexJS')
-    },
-    /*folder : {
-        INPUT : document.getElementById('folderInput'),
-        DIV : document.getElementById('divFolder'),
-        LISTE : LISTES.folder,
-        EXTENSION : "",
-        DOUBLON_DIV : document.getElementById('doublonFolder'),
-        REGEX_CONTAINER : document.getElementById('regexFolder')
-    }*/
+    }
 };
 
 const CLEAR_BTN = [
@@ -83,38 +70,57 @@ const CLEAR_BTN = [
         button: document.getElementById('clearJS'),
         liste: LISTES.js,
         div: INPUT_CONFIG.js.DIV
-    },
-    /*{
-        value : 'folder',
-        button : document.getElementById('clearFolder'),
-        liste : LISTES.folder,
-        div : INPUT_CONFIG.folder.DIV
-    }*/
+    }
 ];
 
 const REGEX_INPUT = /^[A-Za-z0-9_-]+$/;
 
 const BUTTON = document.getElementById("submit");
 
-const REACTIF = {
-    titre : {
-        src : META_INPUT.title,
-        line : document.createElement('title')
+const LISTE_FONT = {
+    Bodoni_Classic : {
+        class : 'Bodoni-Classic',
+        url : '../font/Bodoni_Moda/BodoniModa-VariableFont_opsz\,wght.ttf',
+        name : 'Bodoni Classic'
     },
-    charset : {
-        src : META_INPUT.charset,
-        line : document.createElement('meta')
+    Gotham_Black : {
+        class : 'Gotham-Black',
+        url : '../font/Gotham Fonts Family/GOTHAM-BOLD.TTF',
+        name : 'Gotham Black'
     },
-    description : {
-        src : META_INPUT.description,
-        line : document.createElement('meta')
+    Gotham_Medium : {
+        class : 'Gotham-Medium',
+        url : '../font/Gotham Fonts Family/Gotham-Medium.otf',
+        name : 'Gotham Medium'
     },
-    author : {
-        src : META_INPUT.author,
-        line : document.createElement('meta')
+    Frick_Regular : {
+        class : 'Frick-Regular',
+        url : '../font/Frick/Frick0.3-Regular.otf',
+        name : 'Frick'
     },
-    favicon : {
-        src : META_INPUT.favicon,
-        line : document.createElement('link')
+    OpeningHours : {
+        class : 'OpeningHours',
+        url : '../font/OpeningHours/OpeningHoursSans-Regular.otf',
+        name : 'Opening Hours'
+    },
+    Stardom_Regular : {
+        class : 'Stardom-Regular',
+        url : '../font/Stardom/Stardom-Regular.otf',
+        name : 'Stardom'
+    },
+    DM_Serif_Text : {
+        class : 'DM-Serif-Text',
+        url : '../font/DM_Serif_Text/DMSerifText-Regular.tt',
+        name : 'DM Serif Text'
+    },
+    Inter : {
+        class : 'Inter',
+        url : '../font/Inter/Inter-VariableFont_opsz\,wght.ttf',
+        name : 'Inter'
+    },
+    Orbitron : {
+        class : 'Orbitron',
+        url : '../font/Orbitron/Orbitron-VariableFont_wght.ttf',
+        name : 'Orbitron'
     }
-}
+};

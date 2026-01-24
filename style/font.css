@@ -10,6 +10,15 @@
 }
 
 @font-face {
+    font-family: 'DM_Serif_Text';
+    src: url('../font/DM_Serif_Text/DMSerifText-Regular.ttf');
+}
+
+.DM-Serif-Text {
+    font-family: 'DM_Serif_Text';
+}
+
+@font-face {
     font-family: 'Gotham Black';
     src: url('../font/Gotham Fonts Family/GOTHAM-BOLD.TTF');
 }
@@ -29,7 +38,7 @@
 
 @font-face {
     font-family: 'Frick Regular';
-    src: url(../font/Frick/Frick0.3-Regular.otf);
+    src: url('../font/Frick/Frick0.3-Regular.otf');
 }
 
 .Frick-Regular {
@@ -47,9 +56,27 @@
 
 @font-face {
     font-family: 'Stardom Regular';
-    src: url(../font/Stardom/Stardom-Regular.otf);
+    src: url('../font/Stardom/Stardom-Regular.otf');
 }
 
 .Stardom-Regular {
     font-family: 'Stardom Regular';
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../font/Inter/Inter-VariableFont_opsz\,wght.ttf');
+}
+
+.Inter {
+    font-family: 'Inter';
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../font/Orbitron/Orbitron-VariableFont_wght.ttf');
+}
+
+.Orbitron {
+    font-family: 'Orbitron';
 }
