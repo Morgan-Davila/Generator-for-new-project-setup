@@ -95,7 +95,7 @@ function afficherEreurRegex (currentInput) {
 function creerUnFontCell (fontClass, fontName) {
     let fontCellContent = `
         <label class="container">
-            <input checked="checked" type="checkbox">
+            <input checked="checked" type="checkbox" name="font-check" class="fontCheck" value="${fontName}">
             <div class="checkmark"></div>
         </label>
         <div class="fontPlace ${fontClass}">
@@ -110,3 +110,7 @@ function creerUnFontCell (fontClass, fontName) {
 
     return fontCell;
 }
+
+// function associerNameFont (name) {
+//     for (let cle of )
+// }

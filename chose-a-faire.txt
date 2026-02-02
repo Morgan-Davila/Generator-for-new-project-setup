@@ -1,6 +1,0 @@
-Choses a faire :
-    - fix innerHTML XSS
-    - remplmacer for in
-    - clean console.log non DEBUG
-    - supprimer ligne orpheline (nettoyer le code)
-    -

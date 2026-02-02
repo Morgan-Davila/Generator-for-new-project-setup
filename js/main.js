@@ -101,6 +101,11 @@ for (let cle in LISTE_FONT) {
     fontCellContainer.appendChild(creerUnFontCell(LISTE_FONT[cle].class, LISTE_FONT[cle].name))
 }
 
+let buttonSec = document.getElementById('button');
+buttonSec.addEventListener('click', (event) =>{
+    let checkFont = document.querySelectorAll('.fontCheck');
+    console.log(checkFont);
+});
 
 // ============================
 // Création du zip final
@@ -131,9 +136,10 @@ BUTTON.addEventListener("click", (event) => {
             break
         }
     };
-
-    console.log(CSSplace);
-    console.log(JSplace);
+    if (DEBUG) {
+        console.log(CSSplace);
+        console.log(JSplace);
+    };
 
     let HTMLcontent = `
         <!DOCTYPE html>
@@ -159,6 +165,10 @@ BUTTON.addEventListener("click", (event) => {
             </body>
         </html>      
     `;
+    // --------------------
+    // Referencement des fonts choisi
+    // --------------------
+    
 
     // --------------------
     // Création du zip
@@ -172,8 +182,9 @@ BUTTON.addEventListener("click", (event) => {
     let folderFont = zip.folder(LISTE_DOC[3]);
 
     let HTMLfile = zip.file('index.html', HTMLcontent)
-    console.log(HTMLcontent)
-
+    if (DEBUG) {
+        console.log(HTMLcontent)
+    };
     
     // Ajouter les fichiers CSS dans folderStyle
     for (let fileName of LISTES.css) {
