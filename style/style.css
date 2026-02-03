@@ -35,8 +35,8 @@ main {
   font-family: "Frick Regular", serif;
   font-size: 50px;
   text-align: center;
-  margin-bottom: 20px;
   color: #2a2220;
+  margin-bottom: 20px;
 }
 
 .sub-title {
@@ -45,7 +45,7 @@ main {
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto 60px;
-  color: #5a524e;
+  color: #202020;
   padding: 0 20px;
 }
 
@@ -110,12 +110,13 @@ form {
 /* Labels */
 /* ========================= */
 label {
-  font-weight: 600;
-  font-size: 15px;
   margin-bottom: 10px;
-  color: #2a2220;
   display: block;
   margin-top: 15px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #2a2220;
+  font-family: "OpeningHours", sans-serif;
 }
 
 /* ========================= */
@@ -126,27 +127,25 @@ input[type=file],
 textarea {
   border: 2px solid #d4ccc7;
   padding: 12px 15px;
-  font-family: "OpeningHours", sans-serif;
-  font-size: 15px;
   border-radius: 8px;
   transition: all 0.3s ease;
   background: #fafafa;
-  color: #2a2220;
   width: 100%;
+  font-weight: 600;
+  font-size: 15px;
+  color: #2a2220;
+  font-family: "OpeningHours", sans-serif;
 }
-
 input[type=text]:focus,
+input[type=file]:focus,
 textarea:focus {
-  outline: none;
-  border-color: #2a2220;
-  background: white;
+  background-color: #ffffff;
 }
 
 input[type=file] {
   padding: 10px;
   cursor: pointer;
 }
-
 input[type=file]::file-selector-button {
   background: #136ecf;
   color: white;
@@ -154,19 +153,17 @@ input[type=file]::file-selector-button {
   padding: 8px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-family: inherit;
   font-size: 14px;
   margin-right: 15px;
   transition: background 0.3s ease;
 }
-
 input[type=file]::file-selector-button:hover {
   background: #2a2220;
 }
 
 .help-text {
   font-size: 24px;
-  color: #5a524e;
+  color: #202020;
   margin: 5px 0 10px 0;
   font-style: italic;
 }
@@ -213,7 +210,7 @@ textarea {
 }
 
 /* ==================== */
-/* Design eror */
+/* Design error */
 /* ==================== */
 .erorMessage {
   color: #e74c3c;
@@ -233,19 +230,17 @@ textarea {
 /* ==================== */
 .folderText {
   margin: 15px 0;
-  color: #5a524e;
+  color: #202020;
 }
 
 #folderContainer ul {
   margin: 20px 0 25px 30px;
-  color: #5a524e;
+  color: #202020;
 }
-
 #folderContainer li {
   margin: 8px 0;
   padding-left: 10px;
 }
-
 #folderContainer li::marker {
   color: #2a2220;
 }
@@ -295,7 +290,7 @@ textarea {
 /* Checkmarks */
 /* ---------- */
 .container {
-  --input-focus: $side-color;
+  --input-focus: #136ecf;
   --input-out-of-focus: #ccc;
   --bg-color: #fff;
   --bg-color-alt: #666;
@@ -306,10 +301,15 @@ textarea {
   display: flex;
   align-items: center;
 }
-
 .container input {
   position: absolute;
   opacity: 0;
+}
+.container input:checked ~ .checkmark {
+  background-color: var(--input-focus);
+}
+.container input:checked ~ .checkmark:after {
+  display: block;
 }
 
 .checkmark {
@@ -324,11 +324,6 @@ textarea {
   background-color: var(--input-out-of-focus);
   transition: all 0.3s;
 }
-
-.container input:checked ~ .checkmark {
-  background-color: var(--input-focus);
-}
-
 .checkmark:after {
   content: "";
   width: 7px;
@@ -340,10 +335,6 @@ textarea {
   border: solid var(--bg-color);
   border-width: 0 2.5px 2.5px 0;
   transform: rotate(45deg);
-}
-
-.container input:checked ~ .checkmark:after {
-  display: block;
 }
 
 /* ========================= */
@@ -366,12 +357,10 @@ button[type=submit] {
   letter-spacing: 1px;
   box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);
 }
-
 button[type=submit]:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);
 }
-
 button[type=submit]:active {
   transform: translateY(0);
   box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);
@@ -407,26 +396,23 @@ button[type=submit]:active {
 /* ==================== */
 .clear-btn {
   background: #e74c3c;
-  color: white;
   border: none;
   padding: 10px 25px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: "OpeningHours", sans-serif;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 15px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #FFFFFF;
+  font-family: "OpeningHours", sans-serif;
 }
-
 .clear-btn:hover {
   background: #c0392b;
   transform: translateY(-1px);
   box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);
 }
-
 .clear-btn:active {
   transform: translateY(0);
   box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);

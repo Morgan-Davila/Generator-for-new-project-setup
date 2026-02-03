@@ -1,14 +1,31 @@
-$backgroundColor1:#ffffff;
-$backgroundColor2:#fafafa;
+$backgroundColor1: #ffffff;
+$backgroundColor2: #fafafa;
 
-$main-text-color:#2a2220;
-$fontCell-color:#202020;
-$secondary-text-color:#5a524e;
+$textColor__main: #2a2220;
+$textColor__fontCell: #202020;
+$textColor__secondary: #5a524e;
+$textColor__white: #FFFFFF;
+$textColor__side: #136ecf;
 
-$side-color:#136ecf; //funny blue
+$fontSize__main: 15px;
+$fontSize__helpText: 24px;
+
+@mixin main-text($font-size, $color) {
+    font-weight: 600;
+    font-size: $font-size;
+    color: $color;
+    font-family: 'OpeningHours', sans-serif;
+}
 
 @mixin common-boxShadow {
     box-shadow: 0 5px 20px rgba(53, 45, 42, 0.3);
+}
+
+@mixin title($font-size) {
+    font-family: 'Frick Regular', serif;
+    font-size: $font-size;
+    text-align: center;
+    color: $textColor__main;
 }
 
 /* ===================================== */
@@ -46,12 +63,8 @@ main {
 /* Header */
 /* ===================================== */
 .title {
-    font-family: 'Frick Regular', serif;
-    font-size: 50px;
-    text-align: center;
+    @include title(50px);
     margin-bottom: 20px;
-    color: $main-text-color;
-    
 }
 
 .sub-title {
@@ -60,7 +73,7 @@ main {
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto 60px;
-    color: $secondary-text-color;
+    color: $textColor__fontCell;
     padding: 0 20px;
 }
 
@@ -78,11 +91,9 @@ form {
 /* =============================== */
 /* Section Titles */
 /* =============================== */
+
 .title-section {
-    font-family: 'Frick Regular', serif;
-    font-size: 25px;
-    text-align: center;
-    color: $main-text-color;
+    @include title(25px);
     margin-top: 60px;
     margin-bottom: 40px;
     position: relative;
@@ -96,14 +107,13 @@ form {
         transform: translateX(-50%);
         width: 80px;
         height: 3px;
-        background: $main-text-color;
+        background: $textColor__main;
     }
 
     &:first-child {
         margin-top: 0;
     }
 }
-
 
 /* ========================= */
 /* Grid Section */
@@ -121,21 +131,20 @@ form {
     }
 
     div {
-       display: flex;
-        flex-direction: column; 
+        display: flex;
+        flex-direction: column;
     }
 }
 
 /* ========================= */
 /* Labels */
 /* ========================= */
+
 label {
-    font-weight: 600;
-    font-size: 15px;
     margin-bottom: 10px;
-    color: $main-text-color;
     display: block;
     margin-top: 15px;
+    @include main-text($fontSize__main, $textColor__main);
 }
 
 /* ========================= */
@@ -147,47 +156,41 @@ input[type="file"],
 textarea {
     border: 2px solid #d4ccc7;
     padding: 12px 15px;
-    font-family: 'OpeningHours', sans-serif;
-    font-size: 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
     background: $backgroundColor2;
-    color: $main-text-color;
     width: 100%;
-}
+    @include main-text($fontSize__main, $textColor__main);
 
-input[type="text"]:focus,
-textarea:focus {
-    outline: none;
-    border-color: $main-text-color;
-    background: white;
+    &:focus {
+        background-color: $backgroundColor1;
+    }
 }
 
 input[type="file"] {
     padding: 10px;
     cursor: pointer;
-}
 
-input[type="file"]::file-selector-button {
-    background: $side-color;
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 14px;
-    margin-right: 15px;
-    transition: background 0.3s ease;
-}
+    &::file-selector-button {
+        background: $textColor__side;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-right: 15px;
+        transition: background 0.3s ease;
 
-input[type="file"]::file-selector-button:hover {
-    background: #2a2220;
+        &:hover {
+            background: #2a2220;
+        }
+    }
 }
 
 .help-text {
     font-size: 24px;
-    color: $secondary-text-color;
+    color: $textColor__fontCell;
     margin: 5px 0 10px 0;
     font-style: italic;
 }
@@ -195,7 +198,6 @@ input[type="file"]::file-selector-button:hover {
 /* ========================= */
 /* Textarea */
 /* ========================= */
-
 
 textarea {
     resize: none;
@@ -222,23 +224,23 @@ textarea {
         margin-top: 8px;
     }
 }
+
 .divInput {
     min-height: 120px;
     width: auto;
     border: #d4ccc7 solid 2px;
     border-radius: 10px;
-    background-color: $backgroundColor1;    
+    background-color: $backgroundColor1;
     color: #9d7587;
     font-family: 'OpeningHours', monospace;
-
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-
     padding: 20px;
 }
+
 /* ==================== */
-/* Design eror */
+/* Design error */
 /* ==================== */
 
 .erorMessage {
@@ -247,36 +249,35 @@ textarea {
     margin-top: 5px;
     font-weight: 600;
 }
+
 .redShadow {
-    box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
-    -webkit-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
-    -moz-box-shadow: 0px 0px 25px 20px rgba(233,60,0,0.75);
+    box-shadow: 0px 0px 25px 20px rgba(233, 60, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 25px 20px rgba(233, 60, 0, 0.75);
+    -moz-box-shadow: 0px 0px 25px 20px rgba(233, 60, 0, 0.75);
 }
-
-
-
-
 
 /* ==================== */
 /* Folder Container */
 /* ==================== */
 .folderText {
     margin: 15px 0;
-    color: $secondary-text-color;
+    color: $textColor__fontCell;
 }
 
-#folderContainer ul {
-    margin: 20px 0 25px 30px;
-    color: $secondary-text-color;
-}
+#folderContainer {
+    ul {
+        margin: 20px 0 25px 30px;
+        color: $textColor__fontCell;
+    }
 
-#folderContainer li {
-    margin: 8px 0;
-    padding-left: 10px;
-}
+    li {
+        margin: 8px 0;
+        padding-left: 10px;
 
-#folderContainer li::marker {
-    color: $main-text-color;
+        &::marker {
+            color: $textColor__main;
+        }
+    }
 }
 
 /* ==================== */
@@ -287,49 +288,45 @@ textarea {
     width: auto;
     border: #d4ccc7 solid 2px;
     border-radius: 10px;
-    background-color: $backgroundColor1;    
+    background-color: $backgroundColor1;
     font-family: 'OpeningHours', monospace;
-
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-
     padding: 20px;
     margin-top: 20px;
 
     input[type="checkbox"] {
-       height: 100px; 
+        height: 100px;
     }
 }
-
-
 
 .fontCell {
     min-height: 90px;
     min-width: 90%;
     border: #d4ccc7 solid 2px;
     border-radius: 10px;
-    background-color: $backgroundColor2;    
-    color: $fontCell-color;
+    background-color: $backgroundColor2;
+    color: $textColor__fontCell;
     font-family: 'OpeningHours', monospace;
-
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-
     margin-top: 20px;
     margin: auto;
 }
+
 .fontPlace {
     color: #202020;
     margin: auto;
     font-size: 20px;
 }
+
 /* ---------- */
 /* Checkmarks */
 /* ---------- */
 .container {
-    --input-focus: $side-color;
+    --input-focus: #{$textColor__side};
     --input-out-of-focus: #ccc;
     --bg-color: #fff;
     --bg-color-alt: #666;
@@ -340,11 +337,19 @@ textarea {
     margin-top: 0px;
     display: flex;
     align-items: center;
-}
 
-.container input {
-    position: absolute;
-    opacity: 0;
+    input {
+        position: absolute;
+        opacity: 0;
+
+        &:checked ~ .checkmark {
+            background-color: var(--input-focus);
+
+            &:after {
+                display: block;
+            }
+        }
+    }
 }
 
 .checkmark {
@@ -358,35 +363,26 @@ textarea {
     box-shadow: 4px 4px var(--main-color);
     background-color: var(--input-out-of-focus);
     transition: all 0.3s;
-}
 
-.container input:checked ~ .checkmark {
-    background-color: var(--input-focus);
+    &:after {
+        content: "";
+        width: 7px;
+        height: 15px;
+        position: absolute;
+        top: 2px;
+        left: 8px;
+        display: none;
+        border: solid var(--bg-color);
+        border-width: 0 2.5px 2.5px 0;
+        transform: rotate(45deg);
+    }
 }
-
-.checkmark:after {
-    content: "";
-    width: 7px;
-    height: 15px;
-    position: absolute;
-    top: 2px;
-    left: 8px;
-    display: none;
-    border: solid var(--bg-color);
-    border-width: 0 2.5px 2.5px 0;
-    transform: rotate(45deg);
-}
-
-.container input:checked ~ .checkmark:after {
-    display: block;
-}
-
 
 /* ========================= */
 /* Submit Button */
 /* ========================= */
 button[type="submit"] {
-    background-color: $side-color;
+    background-color: $textColor__side;
     color: white;
     border: none;
     padding: 18px 50px;
@@ -400,74 +396,69 @@ button[type="submit"] {
     margin: 60px auto 0;
     text-transform: uppercase;
     letter-spacing: 1px;
+    @include common-boxShadow();
 
-    @include common-boxShadow()
+    &:hover {
+        transform: translateY(-2px);
+        @include common-boxShadow();
+    }
+
+    &:active {
+        transform: translateY(0);
+        @include common-boxShadow();
+    }
 }
 
-button[type="submit"]:hover {
-    transform: translateY(-2px);
-    @include common-boxShadow()
-}
-
-button[type="submit"]:active {
-    transform: translateY(0);
-    @include common-boxShadow()
-}
 /* ==================== */
 /* File Cells */
 /* ==================== */
 .fileCell {
-    background: $side-color;
+    background: $textColor__side;
     height: 40px;
     color: #ffffff;
     display: flex;
     border: none;
     padding: 10px 25px;
-    
-    
-    
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .crossInFileCell {
     margin-right: 10px;
 }
+
 .textInFileCell {
     color: rgb(255, 255, 255);
     font-size: 14px;
     font-family: 'OpeningHours', sans-serif;
 }
 
-
 /* ==================== */
 /* Clear Buttons */
 /* ==================== */
+
 .clear-btn {
     background: #e74c3c;
-    color: white;
     border: none;
     padding: 10px 25px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'OpeningHours', sans-serif;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 15px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+    @include main-text($fontSize__main, $textColor__white);
 
-.clear-btn:hover {
-    background: #c0392b;
-    transform: translateY(-1px);
-    @include common-boxShadow()
-}
+    &:hover {
+        background: #c0392b;
+        transform: translateY(-1px);
+        @include common-boxShadow();
+    }
 
-.clear-btn:active {
-    transform: translateY(0);
-    @include common-boxShadow()
+    &:active {
+        transform: translateY(0);
+        @include common-boxShadow();
+    }
 }
 
 /* ==================== */
